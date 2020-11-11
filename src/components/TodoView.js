@@ -3,13 +3,17 @@ import PropTypes from 'prop-types'
 import "./TodoView.css"
 
 
-const TodoView = ({todoList, appHandleDeleteButton}) => {
+const TodoView = ({todoList, appHandleDeleteButton, appHandleEditTodoOnClick, editTodoValue, appHandleEditTodoOnChange, appHandleUpdateTodo}) => {
     return (
         <div>
             <ul style={{ listStyle: "none" }} >
-          {todoList.map(({id, todo}) => {
-           return <li style={{margin: 20}} key={id} > {todo}
-           <span className="todo-button-shared-style edit-button" >Edit</span>
+          {todoList.map(({id, todo, editTodoStatus}) => {
+           return <li style={{margin: 20}} key={id} > 
+
+            {editTodoStatus ? <input onChange={(event) => appHandleEditTodoOnChange(event)} type="text" name="editTodoValue" value={editTodoValue} /> : <span>{todo}</span> }
+            {editTodoStatus ? <span onClick={() => appHandleUpdateTodo(id)} className="todo-button-shared-style edit-button" >Update</span> : <span onClick={() => appHandleEditTodoOnClick(id)} className="todo-button-shared-style edit-button">Edit</span>}
+
+
            <span onClick={() => appHandleDeleteButton(id)} className="todo-button-shared-style delete-button" >Delete</span>
             </li>
           })}

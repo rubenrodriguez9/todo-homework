@@ -10,19 +10,23 @@ export default class App extends Component {
     todoList: [
       {
         id:uuidv4(),
-        todo: "clean car"
+        todo: "clean car",
+        editTodoStatus: false
       },
       {
         id:uuidv4(),
-        todo: "wash clothes"
+        todo: "wash clothes",
+        editTodoStatus: false
       },
       {
         id:uuidv4(),
-        todo: "study"
+        todo: "study",
+        editTodoStatus: false
       }
     ],
     todoValue: "",
-    errorMessage: false
+    errorMessage: false,
+    editTodoValue: ""
   }
 
   appHandleOnClick = () =>{
@@ -65,6 +69,40 @@ export default class App extends Component {
       
   }
 
+  appHandleEditTodoOnClick = (targetID) => {
+    let arr = [...this.state.todoList].map((item) => {
+      if(targetID === item.id)
+      item.editTodoStatus = true
+      return item
+    })
+    this.setState({
+      todoList: arr
+    })
+  }
+
+  appHandleEditTodoOnChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+    console.log(this.state.editTodoValue);
+  }
+
+  appHandleUpdateTodo = (targetID) => {
+    let arr = [...this.state.todoList].map((item) => {
+      if(targetID === item.id){
+        item.todo = this.state.editTodoValue
+        item.editTodoStatus = false
+      }
+      return item
+      
+    })
+    this.setState({
+      todoList: arr,
+      editTodoValue: ""
+    })
+  }
+
+
   render() {
 
     const {todoList} = this.state
@@ -80,6 +118,11 @@ export default class App extends Component {
         <TodoView 
           todoList={todoList}
           appHandleDeleteButton={this.appHandleDeleteButton}
+          appHandleEditTodoOnClick={this.appHandleEditTodoOnClick}
+          editTodoValue={this.editTodoValue}
+          appHandleEditTodoOnChange={this.appHandleEditTodoOnChange}
+          appHandleUpdateTodo={this.appHandleUpdateTodo}
+          
         />
         {this.state.todoList.length === 0 ? <div>No todos active!</div> : null}
       </div>
