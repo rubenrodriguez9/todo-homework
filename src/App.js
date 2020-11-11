@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import {v4 as uuidv4} from "uuid"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import React, { Component } from 'react'
+
+export default class App extends Component {
+
+  state = {
+    todoList: [
+      {
+        id:uuidv4(),
+        todo: "clean car"
+      },
+      {
+        id:uuidv4(),
+        todo: "wash clothes"
+      },
+      {
+        id:uuidv4(),
+        todo: "study"
+      }
+    ]
+  }
+
+  render() {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 }
-
-export default App;
