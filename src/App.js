@@ -26,7 +26,8 @@ export default class App extends Component {
     ],
     todoValue: "",
     errorMessage: false,
-    editTodoValue: ""
+    editTodoValue: "",
+    disabler: false
   }
 
   appHandleOnClick = () =>{
@@ -76,7 +77,8 @@ export default class App extends Component {
       return item
     })
     this.setState({
-      todoList: arr
+      todoList: arr,
+      disabler: true
     })
   }
 
@@ -98,15 +100,13 @@ export default class App extends Component {
     })
     this.setState({
       todoList: arr,
-      editTodoValue: ""
+      editTodoValue: "",
+      disabler: false
     })
   }
 
 
   render() {
-
-    const {todoList} = this.state
-
     return (
       <div style={{textAlign: "center"}} >
 
@@ -116,12 +116,13 @@ export default class App extends Component {
         <input  onChange={this.appHandleOnChange} name={"todoValue"} type="text" value={this.state.todoValue} />
         <button  onClick={this.appHandleOnClick} >Submit</button>        
         <TodoView 
-          todoList={todoList}
+          todoList={this.state.todoList}
           appHandleDeleteButton={this.appHandleDeleteButton}
           appHandleEditTodoOnClick={this.appHandleEditTodoOnClick}
           editTodoValue={this.editTodoValue}
           appHandleEditTodoOnChange={this.appHandleEditTodoOnChange}
           appHandleUpdateTodo={this.appHandleUpdateTodo}
+          disabler={this.state.disabler}
           
         />
         {this.state.todoList.length === 0 ? <div>No todos active!</div> : null}
