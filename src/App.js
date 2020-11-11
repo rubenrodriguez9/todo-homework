@@ -1,6 +1,6 @@
 import './App.css';
 import {v4 as uuidv4} from "uuid"
-
+import TodoView from "./components/TodoView"
 
 import React, { Component } from 'react'
 
@@ -52,11 +52,9 @@ console.log(this.state.todoValue);
 
         <input onChange={this.appHandleOnChange} name={"todoValue"} type="text" value={this.state.todoValue} />
         <button onClick={this.appHandleOnClick} >Submit</button>        
-        <ul>
-          {todoList.map(({id, todo}) => {
-           return <li key={id} > {todo} </li>
-          })}
-        </ul>
+        <TodoView 
+          todoList={todoList}
+        />
         
       </div>
     )
