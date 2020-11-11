@@ -48,10 +48,10 @@ console.log(this.state.todoValue);
     const {todoList} = this.state
 
     return (
-      <div>
+      <div style={{textAlign: "center"}} >
 
-        <input onChange={this.appHandleOnChange} name={"todoValue"} type="text" value={this.state.todoValue} />
-        <button onClick={this.appHandleOnClick} >Submit</button>        
+        <input  onChange={this.appHandleOnChange} name={"todoValue"} type="text" value={this.state.todoValue} />
+        <button  onClick={this.appHandleOnClick} >Submit</button>        
         <TodoView 
           todoList={todoList}
         />
