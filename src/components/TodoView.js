@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import "./TodoView.css"
-
+import Span from "./shared/Span"
 
 const TodoView = ({todoList, appHandleDeleteButton, appHandleEditTodoOnClick, editTodoValue, appHandleEditTodoOnChange, appHandleUpdateTodo, disabler}) => {
     return (
@@ -14,7 +14,12 @@ const TodoView = ({todoList, appHandleDeleteButton, appHandleEditTodoOnClick, ed
             {editTodoStatus ? <span onClick={() => appHandleUpdateTodo(id)} className="todo-button-shared-style edit-button" >Update</span> : <span className={`todo-button-shared-style edit-button ${disabler ? "disabled" : ""}`} onClick={() => appHandleEditTodoOnClick(id)}  >Edit</span>}
 
 
-           <span onClick={() => appHandleDeleteButton(id)} className={`todo-button-shared-style delete-button ${disabler ? "disabled" : ""}`} >Delete</span>
+           <Span 
+           id={id}
+           value={"Delete"}
+           onClickFromDelete={appHandleDeleteButton}
+           deleteClassName={`todo-button-shared-style delete-button ${disabler ? "disabled" : ""}`}
+            />
             </li>
           })}
         </ul>
