@@ -24,8 +24,16 @@ export default class App extends Component {
   }
 
   render() {
+
+    const {todoList} = this.state
+
     return (
       <div>
+        <ul>
+          {todoList.map(({id, todo}) => {
+           return <li key={id} > {todo} </li>
+          })}
+        </ul>
         
       </div>
     )
