@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import "./TodoView.css"
 
 
-const TodoView = ({todoList}) => {
+const TodoView = ({todoList, appHandleDeleteButton}) => {
     return (
         <div>
             <ul style={{ listStyle: "none" }} >
           {todoList.map(({id, todo}) => {
            return <li style={{margin: 20}} key={id} > {todo}
            <span className="todo-button-shared-style edit-button" >Edit</span>
-           <span className="todo-button-shared-style delete-button" >Delete</span>
+           <span onClick={() => appHandleDeleteButton(id)} className="todo-button-shared-style delete-button" >Delete</span>
             </li>
           })}
         </ul>
